@@ -32,5 +32,16 @@ int main(int argc,char **argv)
 	      return(-1);
 	    }
 	}
+	printf("Reading image...\n");
+	unsigned char *data = stbi_load(filename, &width, &height, &pixelWidth, 0);
+	if (!data) {
+		fprintf(stderr, "Couldn't load image.\n");
+		return (-1);
+	}
+
+	printf("Image Read. Width : %d, Height : %d, nComp: %d\n",width,height,pixelWidth);
+
+	int *labels = (int *)malloc(sizeof(int)*width*height);
+	unsigned char *seg_data = (unsigned char *)malloc(sizeof(unsigned char)*width*height*3);
   return 0;
   }
